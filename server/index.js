@@ -1,9 +1,10 @@
-var http = require('http');
+const express= require('express')
+const app =express()
 
-const Port = 8080
-http.createServer(function (req, res) {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello World!');
-}).listen(Port, () => {
-    console.log(`connect to ${Port}`);
-});
+app.use(cors());
+app.use(express.urlencoded({extended:false}))
+app.use(express.json())
+
+app.use('/',require('./Router/Routes.js'))
+
+app.listen(3000)
