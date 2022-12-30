@@ -1,17 +1,12 @@
-const userArr=[]
-
-// exports.signup = (req, res) => {
-//     console.log(req.body);
-//     res.send('SignUp')
-// // let user=req.body.message
-// //         if (check500Error(err,res)) {
-// //             return;
-// //         }else{
-// //             userArr.push(user);
-// //             res.status(200).json({message:'User registered'})
-// //         }
-// }
+const userArr = []
 exports.signup = (req, res) => {
-    console.log(req.body);
-    res.send('SignUp')
+    if (req.body)
+        userArr.push(req.body.signup);
+    // console.log(JSON.stringify(req.body.signup))
+    res.send("User Registered");
 }
+
+// let username=
+// exports.signin=(req,res)=>{
+//     if()
+// }

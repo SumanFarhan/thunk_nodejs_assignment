@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Checkbox, Form, Input } from 'antd';
-
+import { signupUser } from '../Redux/Reducer'
+import { useDispatch } from 'react-redux'
 
 const Signup = () => {
     const onFinish = () => {
@@ -14,7 +15,7 @@ const Signup = () => {
         password: ""
     });
 
-
+    const dispatch = useDispatch()
     const Setting = (event) => {
         const { name, value } = event.target
         setsignedIn((data) => {
@@ -24,25 +25,6 @@ const Signup = () => {
             }
         })
     }
-    async function user(){
-        // let item={fname,lname,username,password}
-        // console.warn(item)
-        let result=await fetch('http://localhost:3000/signup', {
-        method: 'POST',
-        body: JSON.stringify({
-            key: 'value'
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    result=await result.json()
-    console.warn("result",result)
-        // .then(response => response.json())
-        // .then(data => console.log(data))
-        // .catch(error => console.error(error))
-    }
-
 
     return (
         <>
@@ -130,7 +112,7 @@ const Signup = () => {
                             span: 16,
                         }}
                     >
-                        <Button type="primary" htmlType="submit">
+                        <Button type="primary" htmlType="submit" onClick={() => dispatch(signupUser(signedIn))}>
                             Submit
                         </Button>
                         <br />
