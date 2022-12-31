@@ -12,6 +12,18 @@ export const signupUser = createAsyncThunk(
         return res.json();
     }
 )
+export const loginUser = createAsyncThunk(
+    'signin/add',
+    async (data, thunkApi) => {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ signin:data})
+        };
+        const res = await fetch('http://localhost:3000/signin',requestOptions)
+        return res.json();
+    }
+)
 
 const initialState = {
     users: []

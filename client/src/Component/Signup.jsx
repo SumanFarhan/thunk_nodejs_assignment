@@ -11,7 +11,7 @@ const Signup = () => {
     const [signedIn, setsignedIn] = useState({
         fname: "",
         lname: "",
-        username: "",
+        email: "",
         password: ""
     });
 
@@ -72,15 +72,20 @@ const Signup = () => {
                     </Form.Item>
 
                     <Form.Item
-                        label="Username" name="username"
+                        name="email"
+                        label="E-mail"
                         rules={[
-                            {
-                                required: true,
-                                message: 'Please input your username!',
-                            },
+                          {
+                            type: 'email',
+                            message: 'The input is not valid E-mail!',
+                          },
+                          {
+                            required: true,
+                            message: 'Please input your E-mail!',
+                          },
                         ]}
                     >
-                        <Input name="username" onChange={Setting} value={signedIn.username} />
+                        <Input name="email" onChange={Setting} value={signedIn.email} />
                     </Form.Item>
 
                     <Form.Item

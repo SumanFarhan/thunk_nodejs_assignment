@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { loginUser } from '../Redux/Reducer'
+import { useDispatch } from 'react-redux';
 
 
 
 
 const Login = () => {
     const [logIn, setLogIn] = useState({
-        username: "",
+        email: "",
         password: ""
     })
     const Setting = (event) => {
@@ -19,7 +21,7 @@ const Login = () => {
             }
         })
     }
-
+    const dispatch = useDispatch()
 
     return (
         <>
@@ -41,15 +43,20 @@ const Login = () => {
                     }}
                     autoComplete="off">
                     <Form.Item
-                        label="Username" name="username"
+                        name="email"
+                        label="E-mail"
                         rules={[
                             {
+                                type: 'email',
+                                message: 'The input is not valid E-mail!',
+                            },
+                            {
                                 required: true,
-                                message: 'Please input your username!',
+                                message: 'Please input your E-mail!',
                             },
                         ]}
                     >
-                        <Input name="username" onChange={Setting} value={logIn.username} />
+                        <Input name="email" onChange={Setting} value={logIn.email} />
                     </Form.Item>
 
                     <Form.Item
@@ -79,7 +86,7 @@ const Login = () => {
                             span: 16,
                         }}
                     >
-                        <Button type="primary" htmlType="submit" >
+                        <Button type="primary" htmlType="submit" onClick={() => dispatch(loginUser(logIn))}>
                             Login
                         </Button>
                         <br />
