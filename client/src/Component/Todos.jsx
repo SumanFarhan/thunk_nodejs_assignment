@@ -15,7 +15,8 @@ const Todos = () => {
   const listOfItems = () => {
     setitems((oldItems) => {
       if(input){
-        dispatch(todos(input))
+        let task=dispatch(todos(input))
+        console.log(task)
         return [...oldItems, input]
       }
     })
@@ -42,7 +43,7 @@ const Todos = () => {
             value={input}
             onChange={add}
           />
-          <button onClick={listOfItems}>+</button>
+          <button  className="buttonTodo" onClick={listOfItems}>+</button>
           <ol>
             {items.map((itemval, index) => {
               return <List
