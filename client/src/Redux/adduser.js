@@ -62,9 +62,9 @@ export const adduser = createSlice({
                 state.loginData = action.payload.data;
 
         },
-        // [todos.fulfilled]:(state,action)=>{
-        //     state.usersData=action.payload.data;
-        // }
+        [todos.fulfilled]:(state,action)=>{
+            state.usersData=action.payload.data;
+        }
     }
 })
 

@@ -4,9 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { todos } from '../Redux/adduser'
 
 const Todos = () => {
-  const loginData = useSelector((state) => state.user.loginData)
-  // let list = loginData[0].signupData.todo
-
   const dispatch = useDispatch()
   const [input, setinput] = useState("");
   const [items, setitems] = useState([]);

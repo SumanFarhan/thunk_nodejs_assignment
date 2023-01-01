@@ -34,9 +34,9 @@ exports.todos=(req,res)=>{
             for (let i = 0; i < userArr.length; i++ && userArr[i].email === LoginEmail ) {
             // console.log('checkingg todo 2',userArr[i]);
             // if (userArr[i].email === LoginEmail) {
-            userArr[i].todo.push(req.body);
+            let example=userArr[i].todo.push(req.body);
             console.log('checkingg todo 2 -- userAdded', userArr[i].todo)
-            res.send(JSON.parse({ data: userArr[i]}));
+            res.send({data:example})
             // }
         }
         }
