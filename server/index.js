@@ -8,7 +8,7 @@ app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 
 app.use('/',routes)
-let port =process.env.PORT || 3000
+let port =process.env.PORT || 3001
 
 app.listen(port,()=>{
     console.log(`App listening on ${port}`)

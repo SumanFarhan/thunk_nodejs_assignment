@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
-import { Link } from 'react-router-dom';
-import { loginUser } from '../Redux/Reducer'
-import { useDispatch } from 'react-redux';
-
-
-
+import { Link ,useNavigate} from 'react-router-dom';
+import { loginUser } from '../Redux/adduser'
+import { useDispatch,useSelector } from 'react-redux';
 
 const Login = () => {
     const [logIn, setLogIn] = useState({
@@ -22,7 +19,22 @@ const Login = () => {
         })
     }
     const dispatch = useDispatch()
+    const navigate=useNavigate()
+    const signupRecord = useSelector((state) => state.user.usersData)
+    const email = signupRecord.find(value => value.email == logIn.email)
+    const password = signupRecord.find(value => value.password == logIn.password)
+    const submit = () => {
+        if (email && password) {
+            dispatch(loginUser(logIn))
+            return navigate('/todos')
+        }
+        else {
+            alert('Please Signup First')
+            
+            return navigate('/login')
+        }
 
+    }
     return (
         <>
             <h1 className='heading'>LOGIN</h1>
@@ -86,7 +98,7 @@ const Login = () => {
                             span: 16,
                         }}
                     >
-                        <Button type="primary" htmlType="submit" onClick={() => dispatch(loginUser(logIn))}>
+                        <Button type="primary" htmlType="submit" onClick={submit}>
                             Login
                         </Button>
                         <br />

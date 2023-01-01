@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Checkbox, Form, Input } from 'antd';
-import { signupUser } from '../Redux/Reducer'
+import { signupUser } from '../Redux/adduser'
 import { useDispatch } from 'react-redux'
 
 const Signup = () => {
-    const onFinish = () => {
-        alert('User Registration SuccessFully!')
-    }
     const [signedIn, setsignedIn] = useState({
         fname: "",
         lname: "",
@@ -40,7 +37,6 @@ const Signup = () => {
                     initialValues={{
                         remember: true,
                     }}
-                    onFinish={onFinish}
                     autoComplete="off"
 
                 >
