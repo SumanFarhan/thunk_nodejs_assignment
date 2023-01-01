@@ -9,7 +9,8 @@ const Signup = () => {
         fname: "",
         lname: "",
         email: "",
-        password: ""
+        password: "",
+        todo:[]
     });
 
     const dispatch = useDispatch()

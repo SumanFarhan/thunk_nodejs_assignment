@@ -1,27 +1,42 @@
 import React, { useState } from "react";
 import List from "./List";
+import { useDispatch, useSelector } from "react-redux";
+import {todos} from '../Redux/adduser'
 
 const Todos = () => {
+  const loginData = useSelector((state) => state.user.loginData)
+  let emaill = loginData[0].signupData.email;
+  
+  const dispatch=useDispatch()
   const [input, setinput] = useState("");
   const [items, setitems] = useState([]);
 
   const add = (event) => {
-    setinput(event.target.value);
+    const {name,value}=event.target
+    setinput((data)=>{
+      return{
+        ...data,
+        emaill,
+        [name]:value
+      }
+    });
   };
   const listOfItems = () => {
-      setitems((oldItems)=>{
-        return[...oldItems,input]
-      })
-      setinput("");
+    setitems((oldItems) => {
+      dispatch(todos(items))
+      return [...oldItems, input]
+    })
+
+    setinput("");
   };
-  const deleteItem=(id)=>{
-        console.log("delete")
-        setitems((oldItems)=>{
-          return oldItems.filter((arrElement,index)=>{
-              return index !== id;
-          })
-        })
-}
+  const deleteItem = (id) => {
+    console.log("delete")
+    setitems((oldItems) => {
+      return oldItems.filter((arrElement, index) => {
+        return index !== id;
+      })
+    })
+  }
 
   return (
     <>
@@ -37,13 +52,13 @@ const Todos = () => {
           />
           <button onClick={listOfItems}>+</button>
           <ol>
-            {items.map((itemval,index) => {
-                return <List 
+            {items.map((itemval, index) => {
+              return <List
                 key={index}
                 id={index}
                 text={itemval}
                 onSelect={deleteItem}
-                />
+              />
             })}
           </ol>
         </div>
@@ -53,3 +68,4 @@ const Todos = () => {
 };
 
 export default Todos;
+
