@@ -18,9 +18,8 @@ export const loginUser = createAsyncThunk(
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ signin: data })
+            body: JSON.stringify(data)
         };
-        console.log({ signin: data })
         const res = await fetch('http://localhost:3001/signin', requestOptions)
         return res.json();
     }
@@ -32,8 +31,7 @@ export const todos = createAsyncThunk(
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
-        };
-        console.log({ signin: data })
+        }
         const res = await fetch('http://localhost:3001/todos', requestOptions)
         return res.json();
     }
@@ -41,7 +39,7 @@ export const todos = createAsyncThunk(
 
 const initialState = {
     usersData: [],
-    loginData: [],
+    loginData: []
 }
 export const adduser = createSlice({
     name: 'user',
@@ -57,13 +55,16 @@ export const adduser = createSlice({
 
         },
         [signupUser.rejected]: (state) => {
-            alert("Please Fill all Fields")
+            alert("Fill all data")
         },
 
         [loginUser.fulfilled]: (state, action) => {
                 state.loginData = action.payload.data;
 
-        }
+        },
+        // [todos.fulfilled]:(state,action)=>{
+        //     state.usersData=action.payload.data;
+        // }
     }
 })
 

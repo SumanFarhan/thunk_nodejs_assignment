@@ -21,6 +21,7 @@ const Login = () => {
     }
     const dispatch = useDispatch()
     const navigate=useNavigate()
+    const loginData = useSelector((state) => state.user.loginData)
     const signupRecord = useSelector((state) => state.user.usersData)
     const email = signupRecord.find(value => value.email == logIn.email)
     const password = signupRecord.find(value => value.password == logIn.password)
@@ -31,7 +32,6 @@ const Login = () => {
         }
         else {
             alert('Please Signup First')
-            
             return navigate('/login')
         }
 

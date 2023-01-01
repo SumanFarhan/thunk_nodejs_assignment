@@ -1,32 +1,27 @@
 import React, { useState } from "react";
 import List from "./List";
 import { useDispatch, useSelector } from "react-redux";
-import {todos} from '../Redux/adduser'
+import { todos } from '../Redux/adduser'
 
 const Todos = () => {
   const loginData = useSelector((state) => state.user.loginData)
-  let emaill = loginData[0].signupData.email;
-  
-  const dispatch=useDispatch()
+  // let list = loginData[0].signupData.todo
+
+  const dispatch = useDispatch()
   const [input, setinput] = useState("");
   const [items, setitems] = useState([]);
 
   const add = (event) => {
-    const {name,value}=event.target
-    setinput((data)=>{
-      return{
-        ...data,
-        emaill,
-        [name]:value
-      }
-    });
-  };
+    setinput(event.target.value)
+  }
+
   const listOfItems = () => {
     setitems((oldItems) => {
-      dispatch(todos(items))
-      return [...oldItems, input]
+      if(input){
+        dispatch(todos(input))
+        return [...oldItems, input]
+      }
     })
-
     setinput("");
   };
   const deleteItem = (id) => {
